@@ -2,34 +2,53 @@ const { $ } = require('@wdio/globals')
 const Page = require('./page');
 
 class LoginPage extends Page {
-
-    get inputUsername () {
-        return $('#username');
-    }
-
-    get inputPassword () {
-        return $('#password');
-    }
-
-    get btnSubmit () {
-        return $('button[type="submit"]');
-    }
-
-    async login (username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
-    }
-
-    //
     get fromHyperLink (){
-        //return driver.findElement('xpath', '//input[@name="From"]')
         return $('[name="From"]')
     }
     get toHyperLink (){
-        //driver.findElement('xpath','//input[@name="To"]')
-        return $('[name="From"]')
+        return $('[name="To"]')
     }
+
+    listForm(expected){
+        return $('//div[@class="list-flight-des"]//ul[@class="clearfix ul-flight-des collapse fade active in flight_from_domestic"]//li//strong[text()="'+expected+'"]')
+    }
+
+    listTo(expected){
+        return $('//div[@class="list-flight-des"]//ul[@class="clearfix ul-flight-des collapse fade active in flight_to_domestic"]//li//strong[text()="'+expected+'"]')
+    }
+
+    get dateFromElement () {
+        return $('#departure_date_flight');
+    }
+
+    get dateToElement(){
+        return $('#returning_date_flight')
+    }
+
+    get customer(){
+        return $('[for="flight_passenger"]')
+    }
+
+    get childBtn(){
+        return $('div.popover-content > div >div > div.col-xs-7 >div > span > [class="mktnd_btn_children_adult_plus btn btn-plus btn-plus-1 btn-number"]')
+    }
+
+    get timChuyenBayBtn(){
+        return $('[class="mktnd_btn_flight_search_flight btn btn-orange btn-block btn-orange--mod"]')
+    }
+
+    get giaTienLabel(){
+        return $('[class="mktnd_btn_flight_book_now radio btn btn-flight-price flight-select btn-sm"]')
+    }
+
+    get readonlyAttribute(){
+        return $('div.search-form__content__date__input > input[readonly]')
+    }
+
+    get ngayDiTextbox(){
+        return $('#departure_date_flight')
+    }
+
     async inputFrom (expected) {
         await this.fromHyperLink.click();
         await this.listForm(expected).click();
@@ -40,54 +59,40 @@ class LoginPage extends Page {
         await this.listTo(expected).click();
     }
 
-    listForm(expected){
-        //driver.findElement('xpath','//div[@class="list-flight-des"]//ul[@class="clearfix ul-flight-des collapse fade active in flight_from_domestic"]//li//strong[text()="'+expected+'"]')
-        return $('//div[@class="list-flight-des"]//ul[@class="clearfix ul-flight-des collapse fade active in flight_from_domestic"]//li//strong[text()="'+expected+'"]')
-    }
-
-    listTo(expected){
-        //driver.findElement('xpath','//div[@class="list-flight-des"]//ul[@class="clearfix ul-flight-des collapse fade active in flight_from_domestic"]//li//strong[text()="'+expected+'"]')
-        return $('//div[@class="list-flight-des"]//ul[@class="clearfix ul-flight-des collapse fade active in flight_to_domestic"]//li//strong[text()="'+expected+'"]')
-    }
-    get dateFromElement () {
-        return $('#departure_date_flight');
-    }
     async inputDateFrom (expected) {
         await this.dateFromElement.click();
         await this.dateFromElement.setValue(expected);
     }
 
-    get dateToElement(){
-        return $('#returning_date_flight')
-    }
     async inputDateTo (expected) {
         await this.dateToElement.click();
         await this.dateToElement.setValue(expected);
     }
 
-    get customer(){
-        return $('[for="flight_passenger"]')
-    }
     async clickToCustomer () {
         await this.customer.click();
     }
 
-    get childBtn(){
-        return $('div.popover-content > div >div > div.col-xs-7 >div > span > [class="mktnd_btn_children_adult_plus btn btn-plus btn-plus-1 btn-number"]')
-    }
     async clickToChildBtn(){
         await this.childBtn.click();
-    }
-
-    get timChuyenBayBtn(){
-        return $('[class="mktnd_btn_flight_search_flight btn btn-orange btn-block btn-orange--mod"]')
     }
 
     async clickToTimChuyenBay(){
         await this.timChuyenBayBtn.click();
     }
 
-//
+    async verifyGiaTienHienThi(){
+        await expect(this.giaTienLabel).toBeDisplayed()
+    }
+
+    // removeAttribute(){
+    //     browser.execute(() => {
+    //         const elemToRemove = document.querySelector(this.readonlyAttribute)
+    //         elemToRemove.removeAttribute('readonly');
+    //
+    //     });
+    //     browser.elementClear(this.ngayDiTextbox);
+    // }
 
     open () {
         return super.open();

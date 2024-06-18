@@ -1,6 +1,5 @@
 const LoginPage = require("../pageobjects/login.page");
 const {expect} = require("@wdio/globals");
-const SecurePage = require("../pageobjects/secure.page");
 describe('My Login application', () => {
     it('should login with valid credentials', async () => {
         await LoginPage.open()
@@ -24,8 +23,8 @@ describe('My Login application', () => {
         await LoginPage.inputDateTo("30/06/2024")
 
         await LoginPage.clickToCustomer()
-
         await LoginPage.clickToChildBtn()
         await LoginPage.clickToTimChuyenBay()
+        await LoginPage.verifyGiaTienHienThi()
     })
 })
