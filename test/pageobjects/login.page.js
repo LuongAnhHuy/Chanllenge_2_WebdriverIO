@@ -30,7 +30,7 @@ class LoginPage extends Page {
     }
 
     get childBtn(){
-        return $('div.popover-content > div >div > div.col-xs-7 >div > span > [class="mktnd_btn_children_adult_plus btn btn-plus btn-plus-1 btn-number"]')
+        return $('div.popover-content > div >div > div.col-xs-7 >div > span > [class="mktnd_btn_children_adult_plus btn btn-plus btn-plus-1 btn-number"] > i')
     }
 
     get timChuyenBayBtn(){
