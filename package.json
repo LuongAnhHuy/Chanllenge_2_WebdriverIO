@@ -1,0 +1,20 @@
+{
+  "name": "chanllenge_2_by_webdriverio",
+  "version": "1.0.0",
+  "main": "hello.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@wdio/allure-reporter": "^8.39.0",
+    "@wdio/cli": "^8.39.0",
+    "@wdio/local-runner": "^8.39.0",
+    "@wdio/mocha-framework": "^8.39.0",
+    "@wdio/spec-reporter": "^8.39.0",
+    "@wdio/visual-service": "^5.0.1"
+  }
+}
