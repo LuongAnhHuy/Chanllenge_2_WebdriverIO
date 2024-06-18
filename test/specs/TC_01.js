@@ -26,6 +26,6 @@ describe('My Login application', () => {
         await LoginPage.clickToCustomer()
 
         await LoginPage.clickToChildBtn()
+        await LoginPage.clickToTimChuyenBay()
     })
-    //label[@class='control-label' and contains(text(), 'Trẻ em')]//parent::div//following-sibling::div
 })

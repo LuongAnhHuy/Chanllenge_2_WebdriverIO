@@ -73,10 +73,18 @@ class LoginPage extends Page {
     }
 
     get childBtn(){
-        return $('[class=\'mktnd_btn_children_adult_plus btn btn-plus btn-plus-1 btn-number\'] >i')
+        return $('div.popover-content > div >div > div.col-xs-7 >div > span > [class="mktnd_btn_children_adult_plus btn btn-plus btn-plus-1 btn-number"]')
     }
     async clickToChildBtn(){
         await this.childBtn.click();
+    }
+
+    get timChuyenBayBtn(){
+        return $('[class="mktnd_btn_flight_search_flight btn btn-orange btn-block btn-orange--mod"]')
+    }
+
+    async clickToTimChuyenBay(){
+        await this.timChuyenBayBtn.click();
     }
 
 //
