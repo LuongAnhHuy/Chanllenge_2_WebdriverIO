@@ -1,7 +1,7 @@
 const { $ } = require('@wdio/globals')
 const Page = require('./page');
 
-class LoginPage extends Page {
+class HomePage extends Page {
     get fromHyperLink (){
         return $('[name="From"]')
     }
@@ -85,18 +85,9 @@ class LoginPage extends Page {
         await expect(this.giaTienLabel).toBeDisplayed()
     }
 
-    // removeAttribute(){
-    //     browser.execute(() => {
-    //         const elemToRemove = document.querySelector(this.readonlyAttribute)
-    //         elemToRemove.removeAttribute('readonly');
-    //
-    //     });
-    //     browser.elementClear(this.ngayDiTextbox);
-    // }
-
     open () {
         return super.open();
     }
 }
 
-module.exports = new LoginPage();
+module.exports = new HomePage();
